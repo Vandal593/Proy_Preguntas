@@ -2,6 +2,7 @@ let preguntas_aleatorias = true;
 let mostrar_pantalla_juego_términado = true;
 let reiniciar_puntos_al_reiniciar_el_juego = true;
 
+
 window.onload = function () {
   base_preguntas = readText("base-preguntas.json");
   interprete_bp = JSON.parse(base_preguntas);
