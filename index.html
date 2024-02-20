@@ -1,99 +1,123 @@
-<!DOCTYPE html><html lang="en"><head>
-  <meta charset="UTF-8">
-  <title>Juego de preguntas</title>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.0/dist/sweetalert2.all.min.js"></script>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Categorías</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
-  <style>
-    * {
-      transition: all 0.3s;
-    }
-
-    body {
-      background: cadetblue;
-      padding: 0;
-      margin: 0;
-      text-align: center;
-      font-family: calibri;
-      font-size: 120%;
-    }
-
-    .contenedor {
-      width: 98vw;
-      height: 97vh;
-      display: inline-flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .encabezado {
-      position: relative;
-      background: white;
-      min-width: 300px;
-      width: 70%;
-      max-width: 600px;
-      padding: 10px;
-    }
-
-    .categoria {
-      opacity: 0.3;
-      text-align: left;
-    }
-
-    .pregunta {
-      padding: 10px;
-    }
-
-    .imagen {
-      object-fit: cover;
-      height: 0px;
-      width: 0px;
-    }
-
-    .btn {
-      background: white;
-      width: 60%;
-      max-width: 550px;
-      padding: 10px;
-      margin: 5px;
-      cursor: pointer;
-    }
-
-    .btn:hover {
-      transform: scale(1.05);
-    }
-    
-    .numero{
-      position: absolute;
-      opacity:0.3;
-      top: 10px;
-      right: 10px;
-    }
-    
-    .puntaje{
-      padding:10px;
-      color:white;
-    }
-  </style>
-
-  <div class="contenedor">
-    <div class="puntaje" id="puntaje"></div>
-    <div class="encabezado">
-      <div class="categoria" id="categoria">
-      </div>
-      <div class="numero" id="numero"></div>
-      <div class="pregunta" id="pregunta">
-      </div>
-      <img src="#" class="imagen" id="imagen">
+    <!-- Pantalla de inicio -->
+    <div id="inicio">
+        <h1>Bienvenido al Juego de Palabras</h1>
+        <button onclick="iniciarJuego('Familia')">Familia</button>
+        <button onclick="iniciarJuego('Animales')">Animales</button>
+        <button onclick="iniciarJuego('Colores')">Colores</button>
+        <button onclick="iniciarJuego('Frutas')">Frutas</button>
+        <!-- Agrega más botones para otras categorías según sea necesario -->
     </div>
-    <div class="btn" id="btn1" onclick="oprimir_btn(0)"></div>
-    <div class="btn" id="btn2" onclick="oprimir_btn(1)"></div>
-    <div class="btn" id="btn3" onclick="oprimir_btn(2)"></div>
-    <div class="btn" id="btn4" onclick="oprimir_btn(3)"></div>
-    
-    <script src="https://github.com/Vandal593/Proy_Preguntas.git/index.js"></script>
-  </div>
 
-</body></html>
+    <!-- Contenido del juego -->
+    <div id="juego">
+        <h1 id="categoriaSeleccionada"></h1>
+        <div id="tarjetasContainer"></div>
+        <button id="btnRetroceder" onclick="retrocederNivel()">Retroceder</button>
+        <button id="btnAvanzar" onclick="avanzarNivel()">Avanzar</button>
+        <button id="btnRegresarInicio" onclick="regresarAlInicio()">Regresar al Menú</button>
+    </div>
+
+    <!-- Contenedor del cuestionario, inicialmente oculto -->
+    <div id="cuestionario" style="display: none;">
+        <h1 id="categoriaCuestionario"></h1>
+        <div id="puntaje">Puntuación: 0</div>
+        <!-- Categoría 1 -->
+        <div id="Familia" class="categoria-contenedor">
+            <div class="contenido-flex">
+                <div class="imagenes">
+                    <img src="images/Familia/1.png" alt="Imagen 1" class="dropzone" data-palabra-correcta="palabra1">
+                    <img src="images/Familia/2.png" alt="Imagen 2" class="dropzone" data-palabra-correcta="palabra2">
+                    <img src="images/Familia/3.png" alt="Imagen 3" class="dropzone" data-palabra-correcta="palabra3">
+                    <img src="images/Familia/4.png" alt="Imagen 4" class="dropzone" data-palabra-correcta="palabra4">
+                    <img src="images/Familia/5.png" alt="Imagen 5" class="dropzone" data-palabra-correcta="palabra5">
+                </div>
+                <div class="palabras">
+                    <div id="palabra1" class="palabra" draggable="true">Palabra 1</div>
+                    <div id="palabra2" class="palabra" draggable="true">Palabra 2</div>
+                    <div id="palabra3" class="palabra" draggable="true">Palabra 3</div>
+                    <div id="palabra4" class="palabra" draggable="true">Palabra 4</div>
+                    <div id="palabra5" class="palabra" draggable="true">Palabra 5</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Categoría 2 -->
+        <div id="Animales" class="categoria-contenedor">
+            <div class="contenido-flex">
+                <div class="imagenes">
+                    <img src="images/Animales/1.png" alt="Imagen 1" class="dropzone">
+                    <img src="images/Animales/2.jpg" alt="Imagen 2" class="dropzone">
+                    <img src="images/Animales/3.jpg" alt="Imagen 3" class="dropzone">
+                    <img src="images/Animales/4.png" alt="Imagen 4" class="dropzone">
+                    <img src="images/Animales/5.png" alt="Imagen 5" class="dropzone">
+                </div>
+                <div class="palabras">
+                    <div class="palabra" draggable="true">Palabra 1</div>
+                    <div class="palabra" draggable="true">Palabra 2</div>
+                    <div class="palabra" draggable="true">Palabra 3</div>
+                    <div class="palabra" draggable="true">Palabra 4</div>
+                    <div class="palabra" draggable="true">Palabra 5</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Categoría 3 -->
+        <div id="Colores" class="categoria-contenedor">
+            <div class="contenido-flex">
+                <div class="imagenes">
+                    <img src="images/1.png" alt="Imagen 1" class="dropzone">
+                    <img src="images/2.png" alt="Imagen 2" class="dropzone">
+                    <img src="images/3.png" alt="Imagen 3" class="dropzone">
+                    <img src="images/4.png" alt="Imagen 4" class="dropzone">
+                    <img src="images/5.png" alt="Imagen 5" class="dropzone">
+                </div>
+                <div class="palabras">
+                    <div class="palabra" draggable="true">Palabra 1</div>
+                    <div class="palabra" draggable="true">Palabra 2</div>
+                    <div class="palabra" draggable="true">Palabra 3</div>
+                    <div class="palabra" draggable="true">Palabra 4</div>
+                    <div class="palabra" draggable="true">Palabra 5</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Categoría 3 -->
+        <div id="Frutas" class="categoria-contenedor">
+            <div class="contenido-flex">
+                <div class="imagenes">
+                    <img src="images/1.png" alt="Imagen 1" class="dropzone">
+                    <img src="images/2.png" alt="Imagen 2" class="dropzone">
+                    <img src="images/3.png" alt="Imagen 3" class="dropzone">
+                    <img src="images/4.png" alt="Imagen 4" class="dropzone">
+                    <img src="images/5.png" alt="Imagen 5" class="dropzone">
+                </div>
+                <div class="palabras">
+                    <div class="palabra" draggable="true">Palabra 1</div>
+                    <div class="palabra" draggable="true">Palabra 2</div>
+                    <div class="palabra" draggable="true">Palabra 3</div>
+                    <div class="palabra" draggable="true">Palabra 4</div>
+                    <div class="palabra" draggable="true">Palabra 5</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botones -->
+        <button id="btnReintentar" onclick="reiniciarCuestionario()">Reintentar</button>
+        <button id="btnCalcularPuntaje" style="display: none;" onclick="calcularPuntaje()">Calcular Puntaje</button>
+        <button id="btnRegresarInicio" onclick="regresarAlInicio()">Regresar al Menú</button>
+    </div>
+    <script src="js/index.js"></script>
+</body>
+
+</html>
