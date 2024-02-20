@@ -1,0 +1,184 @@
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    text-align: center;
+    background-color: #F8FAF3;
+    /* Fondo claro */
+    margin: 0;
+}
+
+#inicio {
+    margin-top: 50px;
+}
+
+#juego {
+    display: none;
+    margin-top: 50px;
+    position: relative;
+}
+
+#categoriaSeleccionada {
+    font-size: 32px;
+    /* Aumentar el tamaño de la fuente aún más */
+    font-weight: bold;
+    color: #333;
+    /* Texto más oscuro */
+}
+
+/* Estilo adicional para mostrar los botones en una columna */
+#inicio button {
+    display: block;
+    margin: 15px auto;
+    /* Alineación central de los botones con más espacio */
+    width: 80%;
+    padding: 20px;
+    /* Aumentar el espacio interno del botón */
+    font-size: 24px;
+    /* Aumentar el tamaño de la fuente aún más */
+    background-color: #CBF3EB;
+    /* Fondo verde */
+    color: black;
+    /* Texto blanco */
+    border: none;
+    border-radius: 10px;
+    /* Bordes redondeados */
+    cursor: pointer;
+}
+
+#inicio button:hover {
+    background-color: #a5dba8;
+    /* Cambiar color al pasar el mouse */
+}
+
+#tarjetasContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.tarjeta {
+    background-color: white;
+    /* Fondo azul */
+    color: red;
+    /* Texto blanco */
+    border: 2px solid black;
+    /* Borde más oscuro */
+    border-radius: 10px;
+    /* Bordes redondeados */
+    padding: 20px;
+    margin: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    /* Efecto de transición */
+}
+
+#btnRetroceder,
+#btnAvanzar,
+#btnRegresarInicio,
+#btnReintentar {
+    font-size: 20px;
+    /* Aumentar el tamaño de la fuente de los botones de navegación */
+    padding: 15px;
+    /* Aumentar el espacio interno de los botones de navegación */
+    background-color: #FBC4EB;
+    /* Fondo naranja */
+    color: #fff;
+    /* Texto blanco */
+    border: none;
+    border-radius: 5px;
+    /* Bordes redondeados */
+    cursor: pointer;
+}
+
+#btnRetroceder:hover,
+#btnAvanzar:hover,
+#btnRegresarInicio:hover,
+#btnReintentar:hover {
+    background-color: #E9D1E8;
+    /* Cambiar color al pasar el mouse */
+}
+
+@media only screen and (max-width: 600px) {
+
+    #inicio button,
+    #btnRetroceder,
+    #btnAvanzar,
+    #btnRegresarInicio {
+        width: 100%;
+        /* Botones ocupan el 100% del ancho en dispositivos pequeños */
+    }
+}
+
+/* Estilos del cuestionario */
+
+.categoria-contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.contenido-flex {
+    /* Nuevo contenedor Flex */
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.imagenes,
+.palabras {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    /* Ocupan espacio igualmente */
+}
+
+/* Nuevo estilo para alinear las columnas de imágenes y palabras horizontalmente */
+#Familia,
+#Animales,
+#Colores,
+#Frutas {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.imagenes img, .palabras .palabra {
+    margin: 10px;
+    cursor: grab;
+  }
+
+.imagenes img {
+    width: 300px;
+    height: 100px;
+}
+
+.palabras .palabra {
+    width: 200px; /* Ajusta al ancho deseado */
+    height: 100px; /* Ajusta a la altura deseada */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px;
+    user-select: none;
+    font-size: xx-large; /* Ajusta este valor según el contenido */
+  }
+@media (max-width: 768px) {
+
+    #Familia,
+    #Animales,
+    #Colores,
+    #Frutas {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .imagenes,
+    .palabras {
+        align-items: center;
+    }
+}
