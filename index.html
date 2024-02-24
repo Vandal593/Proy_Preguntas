@@ -6,11 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juego de Categorías</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/png" href="/images/icon.png">
 </head>
 
 <body>
+
+    <!-- Pantalla de niveles -->
+    <div id="niveles">
+        <audio id="audioAmbiente" src="audio/fondo.mp3" loop muted></audio>
+        <button id = "botonAudio"onclick="unmuteAudio()">Activar Sonido</button>
+        <h1>Bienvenido al Juego de Palabras</h1>
+        <button onclick="iniciarJuego('Familia')">Nivel 1</button>
+        <button onclick="iniciarJuego('Animales')">Nivel 2</button>
+        <button onclick="iniciarJuego('Colores')">Nivel 3</button>
+        <!-- Agrega más botones para otras categorías según sea necesario -->
+    </div>
+
     <!-- Pantalla de inicio -->
-    <div id="inicio">
+    <div id="inicio" style="display: none;">
         <h1>Bienvenido al Juego de Palabras</h1>
         <button onclick="iniciarJuego('Familia')">Familia</button>
         <button onclick="iniciarJuego('Animales')">Animales</button>
@@ -20,12 +33,14 @@
     </div>
 
     <!-- Contenido del juego -->
-    <div id="juego">
+    <div id="juego" style="display: none;">
         <h1 id="categoriaSeleccionada"></h1>
         <div id="tarjetasContainer"></div>
-        <button id="btnRetroceder" onclick="retrocederNivel()">Retroceder</button>
-        <button id="btnAvanzar" onclick="avanzarNivel()">Avanzar</button>
-        <button id="btnRegresarInicio" onclick="regresarAlInicio()">Regresar al Menú</button>
+        <div class="footer">
+            <button id="btnRetroceder" onclick="retrocederFase()">Retroceder</button>
+            <button id="btnAvanzar" onclick="avanzarFase()">Avanzar</button>
+            <button id="btnRegresarInicio" onclick="regresarAlInicio()">Regresar al Menú</button>
+        </div>
     </div>
 
     <!-- Contenedor del cuestionario, inicialmente oculto -->
@@ -36,18 +51,23 @@
         <div id="Familia" class="categoria-contenedor">
             <div class="contenido-flex">
                 <div class="imagenes">
-                    <img src="images/Familia/1.png" alt="Imagen 1" class="dropzone" data-palabra-correcta="palabra1">
-                    <img src="images/Familia/2.png" alt="Imagen 2" class="dropzone" data-palabra-correcta="palabra2">
-                    <img src="images/Familia/3.png" alt="Imagen 3" class="dropzone" data-palabra-correcta="palabra3">
-                    <img src="images/Familia/4.png" alt="Imagen 4" class="dropzone" data-palabra-correcta="palabra4">
-                    <img src="images/Familia/5.png" alt="Imagen 5" class="dropzone" data-palabra-correcta="palabra5">
+                    <img src="images/Familia/1.png" alt="Imagen 1" class="dropzone"
+                        data-palabra-correcta="palabraFamilia1">
+                    <img src="images/Familia/2.png" alt="Imagen 2" class="dropzone"
+                        data-palabra-correcta="palabraFamilia2">
+                    <img src="images/Familia/3.png" alt="Imagen 3" class="dropzone"
+                        data-palabra-correcta="palabraFamilia3">
+                    <img src="images/Familia/4.png" alt="Imagen 4" class="dropzone"
+                        data-palabra-correcta="palabraFamilia4">
+                    <img src="images/Familia/5.png" alt="Imagen 5" class="dropzone"
+                        data-palabra-correcta="palabraFamilia5">
                 </div>
                 <div class="palabras">
-                    <div id="palabra1" class="palabra" draggable="true">Palabra 1</div>
-                    <div id="palabra2" class="palabra" draggable="true">Palabra 2</div>
-                    <div id="palabra3" class="palabra" draggable="true">Palabra 3</div>
-                    <div id="palabra4" class="palabra" draggable="true">Palabra 4</div>
-                    <div id="palabra5" class="palabra" draggable="true">Palabra 5</div>
+                    <div id="palabraFamilia1" class="palabra" draggable="true">Mamá</div>
+                    <div id="palabraFamilia2" class="palabra" draggable="true">Papá</div>
+                    <div id="palabraFamilia3" class="palabra" draggable="true">Hermano</div>
+                    <div id="palabraFamilia4" class="palabra" draggable="true">Abuelo</div>
+                    <div id="palabraFamilia5" class="palabra" draggable="true">Bebe</div>
                 </div>
             </div>
         </div>
@@ -56,18 +76,23 @@
         <div id="Animales" class="categoria-contenedor">
             <div class="contenido-flex">
                 <div class="imagenes">
-                    <img src="images/Animales/1.png" alt="Imagen 1" class="dropzone">
-                    <img src="images/Animales/2.jpg" alt="Imagen 2" class="dropzone">
-                    <img src="images/Animales/3.jpg" alt="Imagen 3" class="dropzone">
-                    <img src="images/Animales/4.png" alt="Imagen 4" class="dropzone">
-                    <img src="images/Animales/5.png" alt="Imagen 5" class="dropzone">
+                    <img src="images/Animales/1.png" alt="Imagen 1" class="dropzone"
+                        data-palabra-correcta="palabraAnimales1">
+                    <img src="images/Animales/2.png" alt="Imagen 2" class="dropzone"
+                        data-palabra-correcta="palabraAnimales2">
+                    <img src="images/Animales/3.png" alt="Imagen 3" class="dropzone"
+                        data-palabra-correcta="palabraAnimales3">
+                    <img src="images/Animales/4.png" alt="Imagen 4" class="dropzone"
+                        data-palabra-correcta="palabraAnimales4">
+                    <img src="images/Animales/5.png" alt="Imagen 5" class="dropzone"
+                        data-palabra-correcta="palabraAnimales5">
                 </div>
                 <div class="palabras">
-                    <div class="palabra" draggable="true">Palabra 1</div>
-                    <div class="palabra" draggable="true">Palabra 2</div>
-                    <div class="palabra" draggable="true">Palabra 3</div>
-                    <div class="palabra" draggable="true">Palabra 4</div>
-                    <div class="palabra" draggable="true">Palabra 5</div>
+                    <div id="palabraAnimales1" class="palabra" draggable="true">Armadillo</div>
+                    <div id="palabraAnimales2" class="palabra" draggable="true">Caballito de Mar</div>
+                    <div id="palabraAnimales3" class="palabra" draggable="true">Piraña</div>
+                    <div id="palabraAnimales4" class="palabra" draggable="true">Jaguar</div>
+                    <div id="palabraAnimales5" class="palabra" draggable="true">Burro</div>
                 </div>
             </div>
         </div>
@@ -76,18 +101,23 @@
         <div id="Colores" class="categoria-contenedor">
             <div class="contenido-flex">
                 <div class="imagenes">
-                    <img src="images/1.png" alt="Imagen 1" class="dropzone">
-                    <img src="images/2.png" alt="Imagen 2" class="dropzone">
-                    <img src="images/3.png" alt="Imagen 3" class="dropzone">
-                    <img src="images/4.png" alt="Imagen 4" class="dropzone">
-                    <img src="images/5.png" alt="Imagen 5" class="dropzone">
+                    <img src="images/Colores/1.png" alt="Imagen 1" class="dropzone"
+                        data-palabra-correcta="palabraColores1">
+                    <img src="images/Colores/2.png" alt="Imagen 2" class="dropzone"
+                        data-palabra-correcta="palabraColores2">
+                    <img src="images/Colores/3.png" alt="Imagen 3" class="dropzone"
+                        data-palabra-correcta="palabraColores3">
+                    <img src="images/Colores/4.png" alt="Imagen 4" class="dropzone"
+                        data-palabra-correcta="palabraColores4">
+                    <img src="images/Colores/5.png" alt="Imagen 5" class="dropzone"
+                        data-palabra-correcta="palabraColores5">
                 </div>
                 <div class="palabras">
-                    <div class="palabra" draggable="true">Palabra 1</div>
-                    <div class="palabra" draggable="true">Palabra 2</div>
-                    <div class="palabra" draggable="true">Palabra 3</div>
-                    <div class="palabra" draggable="true">Palabra 4</div>
-                    <div class="palabra" draggable="true">Palabra 5</div>
+                    <div id="palabraColores1" class="palabra" draggable="true">Rojo</div>
+                    <div id="palabraColores2" class="palabra" draggable="true">Azul</div>
+                    <div id="palabraColores3" class="palabra" draggable="true">Verde</div>
+                    <div id="palabraColores4" class="palabra" draggable="true">Amarillo</div>
+                    <div id="palabraColores5" class="palabra" draggable="true">Lila</div>
                 </div>
             </div>
         </div>
@@ -96,26 +126,32 @@
         <div id="Frutas" class="categoria-contenedor">
             <div class="contenido-flex">
                 <div class="imagenes">
-                    <img src="images/1.png" alt="Imagen 1" class="dropzone">
-                    <img src="images/2.png" alt="Imagen 2" class="dropzone">
-                    <img src="images/3.png" alt="Imagen 3" class="dropzone">
-                    <img src="images/4.png" alt="Imagen 4" class="dropzone">
-                    <img src="images/5.png" alt="Imagen 5" class="dropzone">
+                    <img src="images/Frutas/1.png" alt="Imagen 1" class="dropzone"
+                        data-palabra-correcta="palabraFrutas1">
+                    <img src="images/Frutas/2.png" alt="Imagen 2" class="dropzone"
+                        data-palabra-correcta="palabraFrutas2">
+                    <img src="images/Frutas/3.png" alt="Imagen 3" class="dropzone"
+                        data-palabra-correcta="palabraFrutas3">
+                    <img src="images/Frutas/4.png" alt="Imagen 4" class="dropzone"
+                        data-palabra-correcta="palabraFrutas4">
+                    <img src="images/Frutas/5.png" alt="Imagen 5" class="dropzone"
+                        data-palabra-correcta="palabraFrutas5">
                 </div>
                 <div class="palabras">
-                    <div class="palabra" draggable="true">Palabra 1</div>
-                    <div class="palabra" draggable="true">Palabra 2</div>
-                    <div class="palabra" draggable="true">Palabra 3</div>
-                    <div class="palabra" draggable="true">Palabra 4</div>
-                    <div class="palabra" draggable="true">Palabra 5</div>
+                    <div id="palabraFrutas1" class="palabra" draggable="true">Palabra 1</div>
+                    <div id="palabraFrutas2" class="palabra" draggable="true">Palabra 2</div>
+                    <div id="palabraFrutas3" class="palabra" draggable="true">Palabra 3</div>
+                    <div id="palabraFrutas4" class="palabra" draggable="true">Palabra 4</div>
+                    <div id="palabraFrutas5" class="palabra" draggable="true">Palabra 5</div>
                 </div>
             </div>
         </div>
-
-        <!-- Botones -->
-        <button id="btnReintentar" onclick="reiniciarCuestionario()">Reintentar</button>
-        <button id="btnCalcularPuntaje" style="display: none;" onclick="calcularPuntaje()">Calcular Puntaje</button>
-        <button id="btnRegresarInicio" onclick="regresarAlInicio()">Regresar al Menú</button>
+        <div class="footer">
+            <!-- Botones -->
+            <button id="btnReintentar" onclick="reiniciarCuestionario()">Reintentar</button>
+            <button id="btnCalcularPuntaje" style="display: none;" onclick="calcularPuntaje()">Calcular Puntaje</button>
+            <button id="btnRegresarInicio" onclick="regresarAlInicio()">Regresar al Menú</button>
+        </div>
     </div>
     <script src="js/index.js"></script>
 </body>
