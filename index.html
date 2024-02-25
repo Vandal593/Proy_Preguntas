@@ -4,21 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego de Categorías</title>
+    <title>Juego de Palabras</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="icon" type="image/png" href="/images/icon.png">
+    <link rel="icon" type="image/png" href="images/icon.png">
 </head>
 
 <body>
-
+    <audio id="audioAmbiente" src="audio/fondo.mp3" loop muted></audio>
+    <button id="botonAudio" onclick="unmuteAudio()">
+        <span id="iconoAudio" role="img" aria-label="Icono de sonido">🔇</span>
+    </button>
     <!-- Pantalla de niveles -->
     <div id="niveles">
-        <audio id="audioAmbiente" src="audio/fondo.mp3" loop muted></audio>
-        <button id = "botonAudio"onclick="unmuteAudio()">Activar Sonido</button>
+
+
         <h1>Bienvenido al Juego de Palabras</h1>
         <button onclick="iniciarNivel('Nivel1')">Nivel 1</button>
         <button onclick="iniciarJuego('Nivel2')">Nivel 2</button>
-        <button onclick="iniciarNivel3('Colores')">Nivel 3</button>
+        <button onclick="iniciarJuego('Nivel3')">Nivel 3</button>
+        <button onclick="iniciarJuego('Nivel4')">Nivel 4</button>
         <!-- Agrega más botones para otras categorías según sea necesario -->
     </div>
 
@@ -164,14 +168,15 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
     <div class="footer">
-        <button style="display: none;" id="btnRegresarInicio" onclick="regresarInicio()">Regresar al Menú</button>
         <button style="display: none;" id="btnRetroceder" onclick="retrocederFase()">Retroceder</button>
         <button style="display: none;" id="btnAvanzar" onclick="avanzarFase()">Avanzar</button>
         <button style="display: none;" id="btnReintentar" onclick="reiniciarCuestionario()">Reintentar</button>
-        <button style="display: none;" id="btnRegresarCategoria" onclick="regresarACategorias()">Regresar a las Categorias</button>
+        <button style="display: none;" id="btnRegresarCategoria" onclick="regresarACategorias()">Regresar a las
+            Categorias</button>
+        <button style="display: none;" id="btnRegresarInicio" onclick="regresarInicio()">Regresar al Menú</button>
     </div>
     <script src="js/functions.js"></script>
     <script src="js/index.js"></script>

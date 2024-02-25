@@ -1,4 +1,3 @@
-
 body {
     font-family: 'Comic Sans MS', sans-serif;
     padding-bottom: 60px;
@@ -8,7 +7,8 @@ body {
     margin: 0;
 }
 
-#inicio, #niveles {
+#inicio,
+#niveles {
     margin-top: 50px;
 }
 
@@ -27,7 +27,8 @@ body {
 }
 
 /* Estilo adicional para mostrar los botones en una columna */
-#inicio button, #niveles button {
+#inicio button,
+#niveles button {
     font-family: 'Comic Sans MS', sans-serif;
     display: block;
     margin: 15px auto;
@@ -47,7 +48,8 @@ body {
     cursor: pointer;
 }
 
-#inicio button, #niveles button:hover {
+#inicio button,
+#niveles button:hover {
     background-color: #a5dba8;
     /* Cambiar color al pasar el mouse */
 }
@@ -105,6 +107,7 @@ body {
 }
 
 @media only screen and (max-width: 600px) {
+
     #inicio button,
     #btnRetroceder,
     #btnAvanzar,
@@ -151,10 +154,11 @@ body {
     width: 100%;
 }
 
-.imagenes img, .palabras .palabra {
+.imagenes img,
+.palabras .palabra {
     margin: 10px;
     cursor: grab;
-  }
+}
 
 .imagenes img {
     width: 300px;
@@ -162,8 +166,10 @@ body {
 }
 
 .palabras .palabra {
-    width: 200px; /* Ajusta al ancho deseado */
-    height: 100px; /* Ajusta a la altura deseada */
+    width: 200px;
+    /* Ajusta al ancho deseado */
+    height: 100px;
+    /* Ajusta a la altura deseada */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -172,8 +178,10 @@ body {
     border: 1px solid #ccc;
     padding: 10px;
     user-select: none;
-    font-size: xx-large; /* Ajusta este valor según el contenido */
-  }
+    font-size: xx-large;
+    /* Ajusta este valor según el contenido */
+}
+
 @media (max-width: 768px) {
 
     #Familia,
@@ -190,8 +198,29 @@ body {
     }
 }
 
+#botonAudio {
+    position: fixed;
+    /* Posicionamiento fijo en la pantalla */
+    top: 10px;
+    /* Separación del borde superior */
+    right: 10px;
+    /* Separación del borde derecho */
+    z-index: 1000;
+    /* Asegúrate de que esté sobre otros elementos */
+    background: none;
+    /* Fondo transparente o ajusta según prefieras */
+    border: none;
+    /* Sin borde */
+    cursor: pointer;
+}
+
+#iconoAudio {
+    font-size: 5em;
+    /* Hace el ícono más grande */
+}
+
 .footer button {
-    margin: 0 5px; 
+    margin: 0 5px;
 }
 
 .footer {
@@ -199,11 +228,18 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: #f8f9fa; /* Color de fondo */
-    display: flex; /* Usa flexbox */
-    justify-content: center; /* Centra los elementos horizontalmente */
-    align-items: center; /* Centra los elementos verticalmente */
-    padding: 10px 0; /* Espacio arriba y abajo del contenido */
-    box-shadow: 0 -2px 5px rgba(0,0,0,0.2); /* Sombra para dar sensación de elevación */
-    flex-wrap: wrap; /* Permite que los botones se envuelvan si hay muchos */
+    background-color: #f8f9fa;
+    /* Color de fondo */
+    display: flex;
+    /* Usa flexbox */
+    justify-content: center;
+    /* Centra los elementos horizontalmente */
+    align-items: center;
+    /* Centra los elementos verticalmente */
+    padding: 10px 0;
+    /* Espacio arriba y abajo del contenido */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+    /* Sombra para dar sensación de elevación */
+    flex-wrap: wrap;
+    /* Permite que los botones se envuelvan si hay muchos */
 }
