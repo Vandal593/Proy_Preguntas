@@ -7,6 +7,7 @@
     <title>Juego de Palabras</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" type="image/png" href="images/icon.png">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1/dist/confetti.min.js"></script>
 </head>
 
 <body>
@@ -23,6 +24,7 @@
         <button onclick="iniciarJuego('Nivel2')">Nivel 2</button>
         <button onclick="iniciarJuego('Nivel3')">Nivel 3</button>
         <button onclick="iniciarJuego('Nivel4')">Nivel 4</button>
+        <button onclick="iniciarNivel5('Nivel5')">Nivel 5</button>
         <!-- Agrega más botones para otras categorías según sea necesario -->
     </div>
 
@@ -39,6 +41,14 @@
     <div id="juego" style="display: none;">
         <h1 id="categoriaSeleccionada"></h1>
         <div id="tarjetasContainer"></div>
+    </div>
+
+    <div id="juego-nivel5" style="display: none;">
+        <h1 id="nivel5">Nivel 5</h1>
+        <div class="dropzones-nivel5">
+        </div>
+        <div class="oraciones-nivel5">
+        </div>
     </div>
 
     <!-- Contenedor del cuestionario, inicialmente oculto -->
@@ -178,6 +188,7 @@
             Categorias</button>
         <button style="display: none;" id="btnRegresarInicio" onclick="regresarInicio()">Regresar al Menú</button>
     </div>
+
     <script src="js/functions.js"></script>
     <script src="js/index.js"></script>
 </body>

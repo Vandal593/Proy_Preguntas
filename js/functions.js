@@ -1,3 +1,11 @@
+let datosConfiguracion;
+fetch('confeti.json')
+    .then(response => response.json())
+    .then(data => {
+        datosConfiguracion = data;
+        // Puedes usar datosConfiguracion para controlar cómo y cuándo lanzar el confeti
+    });
+
 var sonidoAmbiente = new Audio('audio/fondo.mp3');
 
 function readText(ruta_local) {
@@ -10,6 +18,34 @@ function readText(ruta_local) {
   }
   return texto;
 }
+
+function lanzarConfeti() {
+  for (let i = 0; i < 100; i++) {
+      crearConfeti();
+  }
+}
+
+function crearConfeti() {
+  const confeti = document.createElement('div');
+  confeti.classList.add('confeti');
+  document.body.appendChild(confeti);
+
+  // Configuración inicial
+  confeti.style.left = `${Math.random() * window.innerWidth}px`;
+  confeti.style.top = `0px`;
+  confeti.style.backgroundColor = `#${Math.floor(Math.random()*16777215).toString(16)}`;
+
+  // Animación
+  let intervalo = setInterval(() => {
+      if (parseInt(confeti.style.top) > window.innerHeight) {
+          clearInterval(intervalo);
+          confeti.remove();
+      } else {
+          confeti.style.top = `${parseInt(confeti.style.top) + 4}px`;
+      }
+  }, 10 + Math.random() * 10); // Velocidad de caída
+}
+
 
 function reproducirSonido(sonido) {
   var clone = sonido.cloneNode();
@@ -77,7 +113,7 @@ function gestionarBotonesFooter(contexto, categoria) {
   }
 
   // Ajuste adicional para manejar específicamente 'nivel2'
-  if (categoria === 'Nivel2' || categoria === 'Nivel3' || categoria === 'Nivel4') {
+  if (categoria === 'Nivel2' || categoria === 'Nivel3' || categoria === 'Nivel4' || categoria === 'Nivel5') {
     document.getElementById('btnRegresarCategoria').style.display = 'none';
     document.getElementById('btnRegresarInicio').style.display = 'block';
     // Aquí puedes agregar o modificar la visibilidad de botones específicamente para 'nivel2'

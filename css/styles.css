@@ -243,3 +243,31 @@ body {
     flex-wrap: wrap;
     /* Permite que los botones se envuelvan si hay muchos */
 }
+
+.dropzone-nivel5 {
+    border: 2px dashed #ccc;
+    height: 50px;
+    /* Altura de la dropzone */
+    width: 100px;
+    /* Anchura de la dropzone */
+    margin: 10px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.oraciones-nivel5 div {
+    padding: 5px 10px;
+    margin: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    cursor: grab;
+}
+
+.confeti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background-color: #f00;
+    z-index: 9999;
+}
