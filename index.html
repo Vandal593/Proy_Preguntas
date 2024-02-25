@@ -16,31 +16,25 @@
         <audio id="audioAmbiente" src="audio/fondo.mp3" loop muted></audio>
         <button id = "botonAudio"onclick="unmuteAudio()">Activar Sonido</button>
         <h1>Bienvenido al Juego de Palabras</h1>
-        <button onclick="iniciarJuego('Familia')">Nivel 1</button>
-        <button onclick="iniciarJuego('Animales')">Nivel 2</button>
-        <button onclick="iniciarJuego('Colores')">Nivel 3</button>
+        <button onclick="iniciarNivel('Nivel1')">Nivel 1</button>
+        <button onclick="iniciarJuego('Nivel2')">Nivel 2</button>
+        <button onclick="iniciarNivel3('Colores')">Nivel 3</button>
         <!-- Agrega más botones para otras categorías según sea necesario -->
     </div>
 
     <!-- Pantalla de inicio -->
     <div id="inicio" style="display: none;">
-        <h1>Bienvenido al Juego de Palabras</h1>
+        <h1>Escoje una categoria</h1>
         <button onclick="iniciarJuego('Familia')">Familia</button>
         <button onclick="iniciarJuego('Animales')">Animales</button>
         <button onclick="iniciarJuego('Colores')">Colores</button>
         <button onclick="iniciarJuego('Frutas')">Frutas</button>
-        <!-- Agrega más botones para otras categorías según sea necesario -->
     </div>
 
     <!-- Contenido del juego -->
     <div id="juego" style="display: none;">
         <h1 id="categoriaSeleccionada"></h1>
         <div id="tarjetasContainer"></div>
-        <div class="footer">
-            <button id="btnRetroceder" onclick="retrocederFase()">Retroceder</button>
-            <button id="btnAvanzar" onclick="avanzarFase()">Avanzar</button>
-            <button id="btnRegresarInicio" onclick="regresarAlInicio()">Regresar al Menú</button>
-        </div>
     </div>
 
     <!-- Contenedor del cuestionario, inicialmente oculto -->
@@ -138,21 +132,48 @@
                         data-palabra-correcta="palabraFrutas5">
                 </div>
                 <div class="palabras">
-                    <div id="palabraFrutas1" class="palabra" draggable="true">Palabra 1</div>
-                    <div id="palabraFrutas2" class="palabra" draggable="true">Palabra 2</div>
-                    <div id="palabraFrutas3" class="palabra" draggable="true">Palabra 3</div>
-                    <div id="palabraFrutas4" class="palabra" draggable="true">Palabra 4</div>
-                    <div id="palabraFrutas5" class="palabra" draggable="true">Palabra 5</div>
+                    <div id="palabraFrutas1" class="palabra" draggable="true">Manzana</div>
+                    <div id="palabraFrutas2" class="palabra" draggable="true">Coco</div>
+                    <div id="palabraFrutas3" class="palabra" draggable="true">Granada</div>
+                    <div id="palabraFrutas4" class="palabra" draggable="true">Aguacate</div>
+                    <div id="palabraFrutas5" class="palabra" draggable="true">Mango</div>
                 </div>
             </div>
         </div>
-        <div class="footer">
-            <!-- Botones -->
-            <button id="btnReintentar" onclick="reiniciarCuestionario()">Reintentar</button>
-            <button id="btnCalcularPuntaje" style="display: none;" onclick="calcularPuntaje()">Calcular Puntaje</button>
-            <button id="btnRegresarInicio" onclick="regresarAlInicio()">Regresar al Menú</button>
+        <!-- Categoría 3 -->
+        <div id="Nivel2" class="categoria-contenedor">
+            <div class="contenido-flex">
+                <div class="imagenes">
+                    <img src="images/Nivel2/1.png" alt="Imagen 1" class="dropzone"
+                        data-palabra-correcta="palabraNive21">
+                    <img src="images/Nivel2/2.png" alt="Imagen 2" class="dropzone"
+                        data-palabra-correcta="palabraNive22">
+                    <img src="images/Nivel2/3.png" alt="Imagen 3" class="dropzone"
+                        data-palabra-correcta="palabraNive23">
+                    <img src="images/Nivel2/4.png" alt="Imagen 4" class="dropzone"
+                        data-palabra-correcta="palabraNive24">
+                    <img src="images/Nivel2/5.png" alt="Imagen 5" class="dropzone"
+                        data-palabra-correcta="palabraNive25">
+                </div>
+                <div class="palabras">
+                    <div id="palabraNive21" class="palabra" draggable="true">Ojos verdes</div>
+                    <div id="palabraNive22" class="palabra" draggable="true">Zapatos celestes</div>
+                    <div id="palabraNive23" class="palabra" draggable="true">Estrella morada</div>
+                    <div id="palabraNive24" class="palabra" draggable="true">Vestido azul</div>
+                    <div id="palabraNive25" class="palabra" draggable="true">Fresa roja</div>
+                </div>
+            </div>
         </div>
+        
     </div>
+    <div class="footer">
+        <button style="display: none;" id="btnRegresarInicio" onclick="regresarInicio()">Regresar al Menú</button>
+        <button style="display: none;" id="btnRetroceder" onclick="retrocederFase()">Retroceder</button>
+        <button style="display: none;" id="btnAvanzar" onclick="avanzarFase()">Avanzar</button>
+        <button style="display: none;" id="btnReintentar" onclick="reiniciarCuestionario()">Reintentar</button>
+        <button style="display: none;" id="btnRegresarCategoria" onclick="regresarACategorias()">Regresar a las Categorias</button>
+    </div>
+    <script src="js/functions.js"></script>
     <script src="js/index.js"></script>
 </body>
 
