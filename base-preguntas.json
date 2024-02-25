@@ -342,5 +342,68 @@
         ]
       }
     ]
+  },
+  {
+    "categoria": "Nivel5",
+    "fases": [
+      {
+        "fase": 1,
+        "oraciones": [
+          "Mi",
+          "abuela",
+          "cocina",
+          "galletas",
+          "deliciosas"
+        ]
+      },
+      {
+        "fase": 2,
+        "oraciones": [
+          "El",
+          "gato",
+          "es",
+          "suave",
+          "y",
+          "ronronea",
+          "cuando",
+          "le",
+          "acariciamos"
+        ]
+      },
+      {
+        "fase": 3,
+        "oraciones": [
+          "Los",
+          "corales",
+          "tienen",
+          "colores",
+          "bonitos"
+        ]
+      },
+      {
+        "fase": 4,
+        "oraciones": [
+          "Las",
+          "jirafas",
+          "comen",
+          "hojas",
+          "verdes",
+          "de",
+          "los",
+          "árboles"
+        ]
+      },
+      {
+        "fase": 5,
+        "oraciones": [
+          "El",
+          "armadillo",
+          "juega",
+          "con",
+          "una",
+          "pelota"
+        ]
+      }
+    ]
   }
 ]
