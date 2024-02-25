@@ -3,16 +3,9 @@ let faseActual = 1;
 
 let puntaje = 0;
 
-function readText(ruta_local) {
-  var texto = null;
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.open("GET", ruta_local, false);
-  xmlhttp.send();
-  if (xmlhttp.status == 200) {
-    texto = xmlhttp.responseText;
-  }
-  return texto;
-}
+var sonidoCorrecto = new Audio('/audio/correcto.mp3'); // Reemplaza con la ruta de tu archivo de sonido correcto
+var sonidoIncorrecto = new Audio('/audio/incorrecto.mp3'); // Reemplaza con la ruta de tu archivo de sonido incorrecto
+
 
 // Cargar información del juego al cargar la página
 window.onload = function () {
@@ -33,46 +26,43 @@ window.onload = function () {
   }
 };
 
-function unmuteAudio() {
-  var audio = document.getElementById('audioAmbiente');
-  botonaudio = document.getElementById('botonAudio');
-  if (audio.muted) {
-    audio.muted = false;
-    audio.play().catch(error => console.error("Error al intentar reproducir el audio:", error));
-    botonAudio.textContent = "Mutear audio"; // Cambia el texto a 'Mutear audio'
-  } else {
-    audio.muted = true;
-    botonAudio.textContent = "Activar Sonido"; // Cambia el texto a 'Activar Sonido'
-  }
+function iniciarNivel(nivel) {
+  localStorage.setItem('nivelActual', nivel);
+  document.getElementById('niveles').style.display = 'none'; // Oculta la pantalla de niveles
+  document.getElementById('inicio').style.display = 'block'; // Muestra la pantalla de inicio
+  gestionarBotonesFooter('inicio');
+  // Aquí puedes agregar lógica adicional si necesitas cargar dinámicamente las categorías
 }
 
 function iniciarJuego(categoria) {
   // Guardar la categoría en el almacenamiento local
   localStorage.setItem('categoriaSeleccionada', categoria);
-  // Oculta la pantalla de inicio
+  // Oculta la pantalla de niveles
+  document.getElementById('niveles').style.display = 'none'; // Oculta la pantalla de niveles
   document.getElementById('inicio').style.display = 'none';
   // Muestra la pantalla de juego
   document.getElementById('juego').style.display = 'block';
   // Actualiza el nombre de la categoría seleccionada y el nivel en el centro
+  gestionarBotonesFooter('juego');
   actualizarInfoJuego();
-
-  // Asegúrate de que los botones de avanzar y retroceder estén visibles
-  document.getElementById('btnAvanzar').style.display = 'inline';
-  document.getElementById('btnRetroceder').style.display = 'inline';
 }
 
 // Función para mostrar el cuestionario
 function mostrarCuestionario() {
+
   localStorage.setItem('enCuestionario', 'true');
   const categoria = localStorage.getItem('categoriaSeleccionada');
+  console.log(categoria);
 
   // Ocultar la interfaz del juego y mostrar la del cuestionario
+  document.getElementById('niveles').style.display = 'none'; // Oculta la pantalla de niveles
   document.getElementById('inicio').style.display = 'none';
   document.getElementById('juego').style.display = 'none';
   document.getElementById('cuestionario').style.display = 'block';
 
+  gestionarBotonesFooter('cuestionario');
   // Ocultar todos los contenedores de cuestionario
-  const contenedores = document.querySelectorAll('#Animales, #Familia, #Colores, #Frutas');
+  const contenedores = document.querySelectorAll('#Animales, #Familia, #Colores, #Frutas, #Nivel2');
   contenedores.forEach(contenedor => contenedor.style.display = 'none');
 
   // Mostrar solo el contenedor de cuestionario de la categoría seleccionada
@@ -133,14 +123,15 @@ document.querySelectorAll('.dropzone').forEach(imagen => {
     const elementoPalabra = document.getElementById(idPalabra);
 
     if (idPalabra === palabraCorrecta) {
-      console.log('Correcto!');
+      reproducirSonido(sonidoCorrecto);
       puntaje++;
       document.getElementById('puntaje').textContent = `Puntuación: ${puntaje}`;
       elementoPalabra.style.backgroundColor = 'lightgreen';
       this.style.border = '3px solid green';
       elementoPalabra.setAttribute('draggable', false); // Deshabilita arrastrar para la palabra correcta
+
     } else {
-      console.log('Incorrecto');
+      reproducirSonido(sonidoIncorrecto);
       elementoPalabra.style.backgroundColor = 'red';
       if (this.style.border !== '3px solid green') {
         elementoPalabra.style.backgroundColor = 'red';
@@ -193,7 +184,6 @@ function escogerPalabrasAleatorias(categoria, fase) {
   return palabrasAleatorias;
 }
 
-
 function actualizarInfoJuego() {
   // Recuperar la categoría y el nivel actual del almacenamiento local
   const categoria = localStorage.getItem('categoriaSeleccionada');
@@ -205,20 +195,6 @@ function actualizarInfoJuego() {
 
   // Actualizar el nombre de la categoría y el nivel en el centro
   document.getElementById('categoriaSeleccionada').innerText = `${categoria} - Fase ${faseActual}`;
-}
-
-function mostrarPalabrasEnTarjetas(palabras) {
-  // Lógica para mostrar las palabras en tarjetas (puedes adaptar esto según tu diseño)
-  const tarjetasContainer = document.getElementById('tarjetasContainer');
-  tarjetasContainer.innerHTML = '';
-
-  palabras.forEach((palabra, index) => {
-    const tarjeta = document.createElement('div');
-    tarjeta.classList.add('tarjeta');
-    tarjeta.innerText = palabra;
-
-    tarjetasContainer.appendChild(tarjeta);
-  });
 }
 
 function avanzarFase() {
@@ -240,19 +216,25 @@ function retrocederFase() {
   }
 }
 
-// Función para calcular el puntaje (esto es un esquema simple, deberás adaptarlo según tu lógica de cálculo)
-function calcularPuntaje() {
-  let puntaje = 0;
-  // Calcula el puntaje basado en las respuestas correctas
-  // Incrementa el puntaje según las respuestas correctas, e.g., puntaje += 10 por cada respuesta correcta
-
-  alert(`Tu puntaje es: ${puntaje}`);
-  // Mostrar botón para regresar al menú
-  document.getElementById('btnRegresarMenu').style.display = 'block';
+function regresarInicio() {
+  // Eliminar la categoría seleccionada del almacenamiento local
+  localStorage.removeItem('categoriaSeleccionada');
+  localStorage.removeItem('faseActual');
   localStorage.removeItem('enCuestionario');
+  // Muestra la pantalla de inicio
+  document.getElementById('niveles').style.display = 'block';
+  // Muestra la pantalla de inicio
+  document.getElementById('inicio').style.display = 'none';
+
+  // Oculta la pantalla de juego
+  document.getElementById('juego').style.display = 'none';
+
+  //Oculta la pantalla del cuestionario
+  document.getElementById('cuestionario').style.display = 'none';
+  gestionarBotonesFooter('niveles');
 }
 
-function regresarAlInicio() {
+function regresarACategorias() {
   // Eliminar la categoría seleccionada del almacenamiento local
   localStorage.removeItem('categoriaSeleccionada');
   localStorage.removeItem('faseActual');
@@ -261,18 +243,12 @@ function regresarAlInicio() {
   reiniciarCuestionario();
   // Muestra la pantalla de inicio
   document.getElementById('inicio').style.display = 'block';
-
+  document.getElementById('niveles').style.display = 'none';
   // Oculta la pantalla de juego
   document.getElementById('juego').style.display = 'none';
 
   //Oculta la pantalla del cuestionario
   document.getElementById('cuestionario').style.display = 'none';
+  gestionarBotonesFooter('inicio');
 }
 
-// Ejemplo de una función para desordenar un array
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-}

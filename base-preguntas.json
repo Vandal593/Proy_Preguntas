@@ -52,12 +52,6 @@
           "Suegra"
         ]
       }
-    ],
-    "cuestionario": [
-      {
-        "preguntas": [1, 2, 3, 4, 5],
-        "imagenes": ["1.png", "2.png", "3.png", "4.png", "5.png"]
-      }
     ]
   },
   {
@@ -224,5 +218,55 @@
         ]
       }
     ]
-  }  
+  },
+  {
+    "categoria": "Nivel2",
+    "fases": [
+      {
+        "fase": 1,
+        "palabras": [
+          "Ojos verdes",
+          "Manzana roja",
+          "Armadillo marrón",
+          "Leopardo amarillo"
+        ]
+      },
+      {
+        "fase": 2,
+        "palabras": [
+          "Kiwi verde",
+          "Coco blanco",
+          "Fresa roja",
+          "Piraña turquesa"
+        ]
+      },
+      {
+        "fase": 3,
+        "palabras": [
+          "Vestido azul",
+          "Zapatos celestes",
+          "Nubes grises",
+          "Coral lila"
+        ]
+      },
+      {
+        "fase": 4,
+        "palabras": [
+          "Almeja dorada",
+          "Hámster bebé",
+          "Papá jirafa",
+          "MoFresa rosadara"
+        ]
+      },
+      {
+        "fase": 5,
+        "palabras": [
+          "Estrella morada",
+          "Cereza negra",
+          "Banana amarilla",
+          "Mamá armadillo"
+        ]
+      }
+    ]
+  }
 ]

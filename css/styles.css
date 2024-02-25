@@ -1,6 +1,7 @@
 
 body {
     font-family: 'Comic Sans MS', sans-serif;
+    padding-bottom: 60px;
     text-align: center;
     background-color: #F8FAF3;
     /* Fondo claro */
@@ -26,7 +27,7 @@ body {
 }
 
 /* Estilo adicional para mostrar los botones en una columna */
-#inicio, #niveles button {
+#inicio button, #niveles button {
     font-family: 'Comic Sans MS', sans-serif;
     display: block;
     margin: 15px auto;
@@ -46,7 +47,7 @@ body {
     cursor: pointer;
 }
 
-#inicio, #niveles button:hover {
+#inicio button, #niveles button:hover {
     background-color: #a5dba8;
     /* Cambiar color al pasar el mouse */
 }
@@ -75,8 +76,9 @@ body {
 }
 
 #btnRetroceder,
-#btnAvanzar,
 #btnRegresarInicio,
+#btnAvanzar,
+#btnRegresarCategoria,
 #btnReintentar {
     font-family: 'Comic Sans MS', sans-serif;
     font-size: 20px;
@@ -94,8 +96,9 @@ body {
 }
 
 #btnRetroceder:hover,
+#btnRegresarInicio,
 #btnAvanzar:hover,
-#btnRegresarInicio:hover,
+#btnRegresarCategoria:hover,
 #btnReintentar:hover {
     background-color: #E9D1E8;
     /* Cambiar color al pasar el mouse */
@@ -106,6 +109,7 @@ body {
     #btnRetroceder,
     #btnAvanzar,
     #btnRegresarInicio,
+    #btnRegresarCategoria,
     #btnReintentar {
         width: 100%;
         /* Botones ocupan el 100% del ancho en dispositivos pequeños */
@@ -186,13 +190,20 @@ body {
     }
 }
 
+.footer button {
+    margin: 0 5px; 
+}
+
 .footer {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     background-color: #f8f9fa; /* Color de fondo */
-    text-align: center; /* Alinea los botones al centro */
+    display: flex; /* Usa flexbox */
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
     padding: 10px 0; /* Espacio arriba y abajo del contenido */
     box-shadow: 0 -2px 5px rgba(0,0,0,0.2); /* Sombra para dar sensación de elevación */
+    flex-wrap: wrap; /* Permite que los botones se envuelvan si hay muchos */
 }
