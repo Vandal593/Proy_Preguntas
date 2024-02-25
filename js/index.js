@@ -3,9 +3,8 @@ let faseActual = 1;
 
 let puntaje = 0;
 
-var sonidoCorrecto = new Audio('/audio/correcto.mp3'); // Reemplaza con la ruta de tu archivo de sonido correcto
-var sonidoIncorrecto = new Audio('/audio/incorrecto.mp3'); // Reemplaza con la ruta de tu archivo de sonido incorrecto
-
+var sonidoCorrecto = new Audio('audio/correcto.mp3'); // Reemplaza con la ruta de tu archivo de sonido correcto
+var sonidoIncorrecto = new Audio('audio/incorrecto.mp3'); // Reemplaza con la ruta de tu archivo de sonido incorrecto
 
 // Cargar información del juego al cargar la página
 window.onload = function () {
@@ -30,7 +29,7 @@ function iniciarNivel(nivel) {
   localStorage.setItem('nivelActual', nivel);
   document.getElementById('niveles').style.display = 'none'; // Oculta la pantalla de niveles
   document.getElementById('inicio').style.display = 'block'; // Muestra la pantalla de inicio
-  gestionarBotonesFooter('inicio');
+  gestionarBotonesFooter('inicio', null);
   // Aquí puedes agregar lógica adicional si necesitas cargar dinámicamente las categorías
 }
 
@@ -43,7 +42,7 @@ function iniciarJuego(categoria) {
   // Muestra la pantalla de juego
   document.getElementById('juego').style.display = 'block';
   // Actualiza el nombre de la categoría seleccionada y el nivel en el centro
-  gestionarBotonesFooter('juego');
+  gestionarBotonesFooter('juego', categoria);
   actualizarInfoJuego();
 }
 
@@ -52,7 +51,6 @@ function mostrarCuestionario() {
 
   localStorage.setItem('enCuestionario', 'true');
   const categoria = localStorage.getItem('categoriaSeleccionada');
-  console.log(categoria);
 
   // Ocultar la interfaz del juego y mostrar la del cuestionario
   document.getElementById('niveles').style.display = 'none'; // Oculta la pantalla de niveles
@@ -60,7 +58,7 @@ function mostrarCuestionario() {
   document.getElementById('juego').style.display = 'none';
   document.getElementById('cuestionario').style.display = 'block';
 
-  gestionarBotonesFooter('cuestionario');
+  gestionarBotonesFooter('cuestionario', categoria);
   // Ocultar todos los contenedores de cuestionario
   const contenedores = document.querySelectorAll('#Animales, #Familia, #Colores, #Frutas, #Nivel2');
   contenedores.forEach(contenedor => contenedor.style.display = 'none');
@@ -138,6 +136,9 @@ document.querySelectorAll('.dropzone').forEach(imagen => {
         this.style.border = '3px solid red';
       }
     }
+    if (puntaje === 5) {
+
+    }
   });
 });
 
@@ -161,7 +162,6 @@ function reiniciarCuestionario() {
 }
 
 function escogerPalabrasAleatorias(categoria, fase) {
-  console.log(categoria)
   const categoriaActual = interprete_bp.find(item => item.categoria === categoria);
   if (!categoriaActual || !categoriaActual.fases) {
     console.error(`Categoría ${categoria} no encontrada.`);
@@ -198,13 +198,26 @@ function actualizarInfoJuego() {
 }
 
 function avanzarFase() {
-  if (faseActual < 5) {
-    faseActual++;
-    localStorage.setItem('faseActual', faseActual);
-    actualizarInfoJuego();
-  } else if (faseActual === 5) {
-    localStorage.setItem('faseActual', faseActual);
-    mostrarCuestionario();
+  var nivelActual = localStorage.getItem('categoriaSeleccionada');
+  console.log(nivelActual);
+  
+  if (nivelActual === 'Nivel3' || nivelActual === 'Nivel4') {
+    // Si el nivel actual es Nivel3 o Nivel4, verifica si la fase actual es menor que el máximo permitido
+    if (faseActual < 4) {
+      faseActual++;
+      localStorage.setItem('faseActual', faseActual);
+      actualizarInfoJuego();
+    } else {
+      console.log("Has completado todas las fases de " + nivelActual + "!");
+    }
+  } else {
+    if (faseActual < 5) {
+      faseActual++;
+      localStorage.setItem('faseActual', faseActual);
+      actualizarInfoJuego();
+    } else if (faseActual === 5) {
+      mostrarCuestionario();
+    }
   }
 }
 
@@ -231,7 +244,7 @@ function regresarInicio() {
 
   //Oculta la pantalla del cuestionario
   document.getElementById('cuestionario').style.display = 'none';
-  gestionarBotonesFooter('niveles');
+  gestionarBotonesFooter('niveles', null);
 }
 
 function regresarACategorias() {
@@ -249,6 +262,6 @@ function regresarACategorias() {
 
   //Oculta la pantalla del cuestionario
   document.getElementById('cuestionario').style.display = 'none';
-  gestionarBotonesFooter('inicio');
+  gestionarBotonesFooter('inicio', null);
 }
 
