@@ -268,5 +268,79 @@
         ]
       }
     ]
+  },
+  {
+    "categoria": "Nivel3",
+    "fases": [
+      {
+        "fase": 1,
+        "palabras": [
+          "Papá está durmiendo",
+          "Mamá come manzana",
+          "Abuelo tiene uvas "
+        ]
+      },
+      {
+        "fase": 2,
+        "palabras": [
+          "Abuela come sandía",
+          "Bebé está jugando",
+          "Camilo tiene almejas"
+        ]
+      },
+      {
+        "fase": 3,
+        "palabras": [
+          "Jirafa está comiendo",
+          "Pera es verde",
+          "Pez es dorado"
+        ]
+      },
+      {
+        "fase": 4,
+        "palabras": [
+          "Pájaros comen moras",
+          "Esposa compra comida",
+          "Sobrina está corriendo"
+        ]
+      }
+    ]
+  },
+  {
+    "categoria": "Nivel4",
+    "fases": [
+      {
+        "fase": 1,
+        "palabras": [
+          "Mi hermana corta fresas",
+          "El pájaro canta",
+          "Las jirafas están corriendo"
+        ]
+      },
+      {
+        "fase": 2,
+        "palabras": [
+          "Los primos tienen juguetes",
+          "El búfalo está caminando",
+          "El hámster come frutas"
+        ]
+      },
+      {
+        "fase": 3,
+        "palabras": [
+          "Nosotros jugamos con el panda",
+          "Mi hermano y yo jugamos con el perro",
+          "Mis abuelos beben jugo de manzana"
+        ]
+      },
+      {
+        "fase": 4,
+        "palabras": [
+          "A las jirafas les gustan las hojas verdes",
+          "Los alces comen muchas piñas",
+          "El mapache juega con su familia "
+        ]
+      }
+    ]
   }
 ]
