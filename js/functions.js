@@ -1,10 +1,4 @@
 let datosConfiguracion;
-fetch('confeti.json')
-    .then(response => response.json())
-    .then(data => {
-        datosConfiguracion = data;
-        // Puedes usar datosConfiguracion para controlar cómo y cuándo lanzar el confeti
-    });
 
 var sonidoAmbiente = new Audio('audio/fondo.mp3');
 

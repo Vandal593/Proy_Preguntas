@@ -72,7 +72,7 @@ function mostrarCuestionario() {
 
   localStorage.setItem('enCuestionario', 'true');
   const categoria = localStorage.getItem('categoriaSeleccionada');
-
+  console.log(categoria);
   // Ocultar la interfaz del juego y mostrar la del cuestionario
   document.getElementById('niveles').style.display = 'none'; // Oculta la pantalla de niveles
   document.getElementById('inicio').style.display = 'none';
@@ -81,7 +81,7 @@ function mostrarCuestionario() {
 
   gestionarBotonesFooter('cuestionario', categoria);
   // Ocultar todos los contenedores de cuestionario
-  const contenedores = document.querySelectorAll('#Animales, #Familia, #Colores, #Frutas, #Nivel2');
+  const contenedores = document.querySelectorAll('#Animales, #Familia, #Colores, #Frutas, #Nivel2, #Nivel3, #Nivel4');
   contenedores.forEach(contenedor => contenedor.style.display = 'none');
 
   // Mostrar solo el contenedor de cuestionario de la categoría seleccionada
@@ -231,30 +231,30 @@ function actualizarInfoJuego() {
 function avanzarFase() {
   var categoriaSeleccionada = localStorage.getItem('categoriaSeleccionada');
   let nivel5Data = interprete_bp.find(categoria => categoria.categoria === 'Nivel5');
-  // Verifica si la categoría actual es 'Nivel5'
-  if (categoriaSeleccionada === 'Nivel5') {
-    // Incrementa la fase y actualiza la interfaz para 'Nivel5'
-    if (faseActual < 5) {
-      faseActual++;
-      localStorage.setItem('faseActual', faseActual);
-      iniciarFaseNivel5(faseActual, nivel5Data);
-      
-    } else {
-      console.log("Has completado todas las fases del Nivel 5!");
-      // Manejar la finalización del Nivel 5 aquí
-    }
-  } else if (categoriaSeleccionada === 'Nivel3' || categoriaSeleccionada === 'Nivel4') {
-    // Lógica para 'Nivel3' y 'Nivel4'
+
+  if (categoriaSeleccionada === 'Nivel3' || categoriaSeleccionada === 'Nivel4') {
+    // Si es 'Nivel3' o 'Nivel4' y la fase actual es menor que 4, incrementa la fase
     if (faseActual < 4) {
       faseActual++;
       localStorage.setItem('faseActual', faseActual);
       actualizarInfoJuego();
     } else {
-      console.log("Has completado todas las fases de " + categoriaSeleccionada + "!");
-      // Aquí puedes redirigir al usuario o mostrar un mensaje de finalización
+      // Si la fase actual es 4, muestra el cuestionario
+      console.log(`Has completado todas las fases de ${categoriaSeleccionada}, pasando al cuestionario.`);
+      mostrarCuestionario();
+    }
+  } else if (categoriaSeleccionada === 'Nivel5') {
+    // Manejo especial para 'Nivel5'
+    if (faseActual < 5) {
+      faseActual++;
+      localStorage.setItem('faseActual', faseActual);
+      iniciarFaseNivel5(faseActual, nivel5Data);
+    } else {
+      console.log("Has completado todas las fases del Nivel 5!");
+      // Manejar la finalización del Nivel 5 aquí
     }
   } else {
-    // Lógica para otros niveles que no son 'Nivel3', 'Nivel4', ni 'Nivel5'
+    // Lógica para otros niveles
     if (faseActual < 5) {
       faseActual++;
       localStorage.setItem('faseActual', faseActual);
@@ -264,6 +264,7 @@ function avanzarFase() {
     }
   }
 }
+
 
 function retrocederFase() {
   var categoriaSeleccionada = localStorage.getItem('categoriaSeleccionada');
@@ -289,6 +290,7 @@ function regresarInicio() {
   localStorage.removeItem('categoriaSeleccionada');
   localStorage.removeItem('faseActual');
   localStorage.removeItem('enCuestionario');
+  reiniciarCuestionario();
   // Muestra la pantalla de inicio
   document.getElementById('niveles').style.display = 'block';
   document.getElementById('inicio').style.display = 'none';
@@ -326,6 +328,14 @@ function iniciarFaseNivel5(fase, nivel5Data) {
     return;
   }
 
+  // Cargar y mostrar la imagen de la fase
+  let contenedorImagen = document.getElementById('contenedor-imagen-nivel5');
+  contenedorImagen.innerHTML = ''; // Limpiar contenedor de imagen anterior
+  let imagen = document.createElement('img');
+  imagen.src = faseData.imagen; // Asume que has añadido una propiedad 'imagen' en tu JSON
+  imagen.alt = 'Imagen de fase ' + fase;
+  contenedorImagen.appendChild(imagen);
+  
   // Guarda el orden correcto en una variable global o en el almacenamiento local
   let ordenCorrecto = faseData.oraciones;
   localStorage.setItem('ordenCorrecto', JSON.stringify(ordenCorrecto)); // Almacenar el orden correcto
@@ -406,7 +416,6 @@ function asignarEventosDrag() {
     palabra.addEventListener('dragstart', handleDragStartNivel5);
   });
 }
-
 
 function verificarOrdenNivel5() {
   let dropzones = document.querySelectorAll('.dropzone-nivel5');

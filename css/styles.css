@@ -244,6 +244,20 @@ body {
     /* Permite que los botones se envuelvan si hay muchos */
 }
 
+#contenedor-imagen-nivel5 img {
+    width: 300px;
+    /* Establece el ancho que desees */
+    height: 200px;
+    /* Establece la altura que desees */
+    object-fit: contain;
+    /* Esto asegura que la imagen se ajuste al contenedor sin distorsionarse */
+    border: 1px solid #ddd;
+    /* Opcional: agrega un borde ligero alrededor de la imagen */
+    margin-bottom: 20px;
+    /* Opcional: añade espacio debajo de la imagen */
+}
+
+
 .dropzone-nivel5 {
     border: 2px dashed #ccc;
     height: 50px;
@@ -256,13 +270,27 @@ body {
     align-items: center;
 }
 
+.oraciones-nivel5 {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente (opcional) */
+    margin: 10px 0;
+}
+
 .oraciones-nivel5 div {
     padding: 5px 10px;
-    margin: 10px;
+    margin: 0 10px; /* Modificado para evitar doble margen lateral */
     background-color: #f0f0f0;
     border: 1px solid #ccc;
     cursor: grab;
+    display: inline-flex; /* Cambiado a inline-flex para permitir alineación interna */
+    align-items: center; /* Alinea el texto dentro del div verticalmente */
+    justify-content: center; /* Alinea el texto dentro del div horizontalmente */
+    min-height: 50px; /* Altura mínima para los divs de las oraciones */
 }
+
 
 .confeti {
     position: fixed;
