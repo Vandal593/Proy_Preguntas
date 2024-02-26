@@ -354,7 +354,8 @@
           "cocina",
           "galletas",
           "deliciosas"
-        ]
+        ],
+        "imagen": "images/Nivel5/1.jpg"
       },
       {
         "fase": 2,
@@ -368,7 +369,8 @@
           "cuando",
           "le",
           "acariciamos"
-        ]
+        ],
+        "imagen": "images/Nivel5/2.jpg"
       },
       {
         "fase": 3,
@@ -378,7 +380,8 @@
           "tienen",
           "colores",
           "bonitos"
-        ]
+        ],
+        "imagen": "images/Nivel5/3.jpg"
       },
       {
         "fase": 4,
@@ -391,7 +394,8 @@
           "de",
           "los",
           "árboles"
-        ]
+        ],
+        "imagen": "images/Nivel5/4.jpg"
       },
       {
         "fase": 5,
@@ -402,7 +406,8 @@
           "con",
           "una",
           "pelota"
-        ]
+        ],
+        "imagen": "images/Nivel5/5.png"
       }
     ]
   }
