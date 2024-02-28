@@ -7,7 +7,7 @@
     <title>Juego de Palabras</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" type="image/png" href="images/icon.png">
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1/dist/confetti.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 
 <body>
@@ -16,25 +16,27 @@
         <span id="iconoAudio" role="img" aria-label="Icono de sonido">🔇</span>
     </button>
     <!-- Pantalla de niveles -->
-    <div id="niveles">
-
-
+    <div id="niveles" class="game-screen">
         <h1>Bienvenido al Juego de Palabras</h1>
-        <button onclick="iniciarNivel('Nivel1')">Nivel 1</button>
-        <button onclick="iniciarJuego('Nivel2')">Nivel 2</button>
-        <button onclick="iniciarJuego('Nivel3')">Nivel 3</button>
-        <button onclick="iniciarJuego('Nivel4')">Nivel 4</button>
-        <button onclick="iniciarNivel5('Nivel5')">Nivel 5</button>
-        <!-- Agrega más botones para otras categorías según sea necesario -->
+        <div class="menu-options">
+            <button class="menu-button" onclick="iniciarNivel('Nivel1')">Nivel 1</button>
+            <button class="menu-button" onclick="iniciarJuego('Nivel2')">Nivel 2</button>
+            <button class="menu-button" onclick="iniciarJuego('Nivel3')">Nivel 3</button>
+            <button class="menu-button" onclick="iniciarJuego('Nivel4')">Nivel 4</button>
+            <button class="menu-button" onclick="iniciarNivel5('Nivel5')">Nivel 5</button>
+            <!-- Agrega más botones para otras categorías según sea necesario -->
+        </div>
     </div>
 
     <!-- Pantalla de inicio -->
     <div id="inicio" style="display: none;">
         <h1>Escoje una categoria</h1>
-        <button onclick="iniciarJuego('Familia')">Familia</button>
-        <button onclick="iniciarJuego('Animales')">Animales</button>
-        <button onclick="iniciarJuego('Colores')">Colores</button>
-        <button onclick="iniciarJuego('Frutas')">Frutas</button>
+        <div class="menu-options">
+            <button onclick="iniciarJuego('Familia')">Familia</button>
+            <button onclick="iniciarJuego('Animales')">Animales</button>
+            <button onclick="iniciarJuego('Colores')">Colores</button>
+            <button onclick="iniciarJuego('Frutas')">Frutas</button>
+        </div>
     </div>
 
     <!-- Contenido del juego -->
@@ -231,12 +233,11 @@
         </div>
     </div>
     <div class="footer">
-        <button style="display: none;" id="btnRetroceder" onclick="retrocederFase()">Retroceder</button>
-        <button style="display: none;" id="btnAvanzar" onclick="avanzarFase()">Avanzar</button>
-        <button style="display: none;" id="btnReintentar" onclick="reiniciarCuestionario()">Reintentar</button>
-        <button style="display: none;" id="btnRegresarCategoria" onclick="regresarACategorias()">Regresar a las
-            Categorias</button>
-        <button style="display: none;" id="btnRegresarInicio" onclick="regresarInicio()">Regresar al Menú</button>
+        <button style="display: none;" id="btnRetroceder" onclick="retrocederFase()">⬅️</button>
+        <button style="display: none;" id="btnAvanzar" onclick="avanzarFase()">➡️</button>
+        <button style="display: none;" id="btnReintentar" onclick="reiniciarCuestionario()">🔄</button>
+        <button style="display: none;" id="btnRegresarCategoria" onclick="regresarACategorias()">☰</button>
+        <button style="display: none;" id="btnRegresarInicio" onclick="regresarInicio()">🏠</button>
     </div>
 
     <script src="js/functions.js"></script>
