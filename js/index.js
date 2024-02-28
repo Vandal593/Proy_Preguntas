@@ -388,26 +388,30 @@ function handleDropNivel5(event) {
   const palabra = document.getElementById(idPalabra);
   let target = event.target;
 
-  // Si se suelta sobre una palabra existente, reasigna el target al dropzone padre
+  // Asegurarse de que el target es una dropzone
   if (!target.classList.contains('dropzone-nivel5')) {
       target = target.closest('.dropzone-nivel5');
   }
 
   if (target && target.classList.contains('dropzone-nivel5')) {
-      // Maneja el caso de un dropzone vacío
+      if (target.classList.contains('correcto')) {
+          // Si el dropzone de destino ya está correcto, no permitir más interacciones
+          return;
+      }
+
       if (!target.hasChildNodes()) {
+          // Si el dropzone está vacío, simplemente se añade la palabra
           target.appendChild(palabra);
       } else {
-          // Intercambio de palabras si el dropzone ya está ocupado
-          const existingWord = target.firstChild;
-          const sourceDropzone = palabra.parentNode;
-          // Solo realiza el intercambio si la palabra proviene de otro dropzone
-          if (sourceDropzone !== target) {
-              sourceDropzone.appendChild(existingWord);
-              target.appendChild(palabra);
-          }
+          // Intercambiar con la palabra existente
+          let existingWord = target.firstChild;
+          let sourceDropzone = palabra.parentNode;
+          sourceDropzone.appendChild(existingWord);
+          target.appendChild(palabra);
       }
-      verificarOrdenNivel5();
+      // Verificar el orden después del intercambio o inserción
+      verificarOrdenPalabra(palabra, target);
+      verificarOrdenNivel5(); // Verificar si el nivel completo está correcto
   }
 }
 
@@ -417,20 +421,47 @@ function asignarEventosDrag() {
   });
 }
 
+function verificarOrdenPalabra(palabraElement, dropzoneElement) {
+  let ordenCorrecto = JSON.parse(localStorage.getItem('ordenCorrecto'));
+  let indexDropzone = Array.from(document.querySelectorAll('.dropzone-nivel5')).indexOf(dropzoneElement);
+  let palabraColocada = palabraElement.textContent.trim();
+
+  if (palabraColocada === ordenCorrecto[indexDropzone]) {
+    reproducirSonido(sonidoCorrecto);
+    dropzoneElement.style.backgroundColor = 'lightgreen';
+    palabraElement.draggable = false;
+    dropzoneElement.classList.add('correcto');
+  } else {
+    reproducirSonido(sonidoIncorrecto);
+    dropzoneElement.style.backgroundColor = 'lightcoral';
+    palabraElement.draggable = true; // Permitir arrastrar de nuevo
+    dropzoneElement.classList.remove('correcto');
+  }
+}
+
 function verificarOrdenNivel5() {
   let dropzones = document.querySelectorAll('.dropzone-nivel5');
   let palabrasEnOrden = Array.from(dropzones).map(dz => dz.textContent.trim());
-
-  // Recupera el orden correcto del almacenamiento local o de la variable global
   let ordenCorrecto = JSON.parse(localStorage.getItem('ordenCorrecto'));
+  let todasCorrectas = true;
 
-  if (ordenCorrecto && JSON.stringify(palabrasEnOrden) === JSON.stringify(ordenCorrecto)) {
+  dropzones.forEach((dropzone, index) => {
+    let palabraActual = dropzone.textContent.trim();
+    if (palabraActual !== ordenCorrecto[index]) {
+      todasCorrectas = false; // Si alguna palabra no coincide, no todas son correctas
+      dropzone.style.backgroundColor = 'lightcoral';
+      dropzone.classList.remove('correcto');
+    } else {
+      dropzone.style.backgroundColor = 'lightgreen';
+      dropzone.classList.add('correcto');
+    }
+  });
+
+  if (todasCorrectas) {
     console.log("¡Orden correcto!");
     reproducirSonido(sonidoFinalizado);
-    // Lógica para cuando el orden es correcto
+    // Aquí puedes manejar lo que sucede cuando todas las palabras están correctas
   } else {
-
     console.log("Orden incorrecto, sigue intentando.");
-    // Lógica para cuando el orden es incorrecto
   }
 }

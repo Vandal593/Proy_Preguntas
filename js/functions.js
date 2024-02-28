@@ -51,6 +51,7 @@ function unmuteAudio() {
 
   if (sonidoAmbiente.muted) {
     sonidoAmbiente.muted = false;
+    sonidoAmbiente.loop = true;
     // Intenta reproducir el audio y maneja posibles errores
     sonidoAmbiente.play().catch(error => console.error("Error al intentar reproducir el audio:", error));
     icono.textContent = '🔊'; // Icono de sonido activo
