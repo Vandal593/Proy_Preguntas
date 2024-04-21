@@ -1,55 +1,55 @@
 [
   {
-    "categoria": "Familia",
+    "categoria": "Partes del Cuerpo",
     "fases": [
       {
         "fase": 1,
         "palabras": [
-          "Mamá",
-          "Papá",
-          "Hermano",
-          "Hermana",
-          "Tío"
+          "Ojo",
+          "Nariz",
+          "Boca",
+          "Oreja",
+          "Diente"
         ]
       },
       {
         "fase": 2,
         "palabras": [
-          "Tía",
-          "Abuela",
-          "Abuelo",
-          "Hijo",
-          "Hija"
+          "Cabeza",
+          "Pecho",
+          "Brazo",
+          "Pierna",
+          "Mano"
         ]
       },
       {
         "fase": 3,
         "palabras": [
-          "Bebé",
-          "Esposo",
-          "Esposa",
-          "Nieto",
-          "Nieta"
+          "Pestaña",
+          "Ceja",
+          "Mejilla",
+          "Frente",
+          "Uña"
         ]
       },
       {
         "fase": 4,
         "palabras": [
-          "Sobrino",
-          "Sobrina",
-          "Primo",
-          "Prima",
-          "Bisabuelo"
+          "Cabello",
+          "Labio",
+          "Lengua",
+          "Cuello",
+          "Axila"
         ]
       },
       {
         "fase": 5,
         "palabras": [
-          "Bisabuela",
-          "Yerno",
-          "Nuera",
-          "Suegro",
-          "Suegra"
+          "Vientre",
+          "Talón",
+          "Quijada",
+          "Cráneo",
+          "Rodilla"
         ]
       }
     ]
@@ -145,7 +145,7 @@
       {
         "fase": 4,
         "palabras": [
-          "Salmon",
+          "Salmón",
           "Rosado",
           "Esmeralda",
           "Beige",
@@ -155,7 +155,7 @@
       {
         "fase": 5,
         "palabras": [
-          "Rojo vino",
+          "Café",
           "Celeste",
           "Amarillo",
           "Coral",

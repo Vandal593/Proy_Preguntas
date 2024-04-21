@@ -81,11 +81,11 @@ function mostrarCuestionario() {
 
   gestionarBotonesFooter('cuestionario', categoria);
   // Ocultar todos los contenedores de cuestionario
-  const contenedores = document.querySelectorAll('#Animales, #Familia, #Colores, #Frutas, #Nivel2, #Nivel3, #Nivel4');
+  const contenedores = document.querySelectorAll('#Animales, #Partes, #Colores, #Frutas, #Nivel2, #Nivel3, #Nivel4');
   contenedores.forEach(contenedor => contenedor.style.display = 'none');
-
+  const partes = categoria.split(' ')[0];
   // Mostrar solo el contenedor de cuestionario de la categoría seleccionada
-  const contenedorCategoria = document.getElementById(categoria);
+  const contenedorCategoria = document.getElementById(partes);
   if (contenedorCategoria) {
     contenedorCategoria.style.display = 'block';
   } else {
