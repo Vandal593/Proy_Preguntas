@@ -71,8 +71,27 @@ function mostrarPalabrasEnTarjetas(palabras) {
     tarjeta.classList.add('tarjeta');
     tarjeta.innerText = palabra;
 
+    // Agregar event listener para el clic en la tarjeta
+    tarjeta.addEventListener('click', () => {
+      hacerTarjetaGrande(tarjeta, palabra);
+    });
+
     tarjetasContainer.appendChild(tarjeta);
   });
+}
+
+function hacerTarjetaGrande(tarjeta, palabra) {
+  // Verificar si la tarjeta se está expandiendo
+  const seEstaExpandiendo = !tarjeta.classList.contains('tarjeta-grande');
+
+  // Cambiar tamaño de la tarjeta al hacer clic
+  tarjeta.classList.toggle('tarjeta-grande');
+
+  // Reproducir el sonido solo si la tarjeta se está expandiendo
+  if (seEstaExpandiendo) {
+    var sonidoPalabra = new Audio(`audio/palabras/${palabra}.mp3`);
+    reproducirSonido(sonidoPalabra);
+  }
 }
 
 // Ejemplo de una función para desordenar un array
